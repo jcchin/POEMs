@@ -112,7 +112,7 @@ class AGroup(om.Group):
 
 if __name__ == "__main__": 
 
-    # To use G0 stand alond
+    # To use G0 stand alone
     p = om.Problem()
     p.model.add_subsystem('G0', AGroup())
     p.model.add_design_var('G0.X', lower=-1, upper=1)
