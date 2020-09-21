@@ -53,7 +53,7 @@ Design Variables
                 model  driver                 model driver    model  driver 
  name (shape) | value  (value) | ref | ref0 | lower (lower) | upper (upper) | 
 ----------------------------------------------------------------------------
-x (1)           10      (1)      10     N/A     -20   (-0.2)   100    (10)    
+x (1)           10      (1)      10     N/A     -20   (-2)   100    (10)    
 y (10)         |31.6|   (|31.6|)  1     N/A     -100  (-100)   100    (100)    
 
 ```
@@ -72,7 +72,6 @@ Notes:
   It will also have columns for the current value, along with the constraint value shown in both model and driver scaled values. 
 - If a constraint is specified with both lower and upper, then separate rows will output for each argument. 
 - At the start of each section should be a summary table which gives the minimum and maximum value based on driver scaled quantities. 
-
 
 The format when arrays are fully expanded will look like this
 ```
@@ -135,4 +134,31 @@ Notes:
 
 
 
+- There will be an option to display the variables in sorted order from high to low, based on rankValue, where rankValue is defined as
+  
+  ```
+  if abs(driverValue) >1:
+      rankValue = driverValue
+  else:
+      rankValue = abs(1/driverValue)
+  ```
+  
+  This prioritizes listing the variables furtherst apart in magnitude. Arrays would be sorted by their 2-norm
+
+- There will be an option to only display the first `n` variables based on their rankValue
+
+As an example, the following variables would be sorted as follows
+
+```
+Design Variables
+-----------------
+
+                model  driver                 model driver    model  driver 
+ name (shape) | value  (value) | ref | ref0 | lower (lower) | upper (upper) | 
+----------------------------------------------------------------------------
+x1 (1)           1000   (1000)    1     N/A     0     (0)     1000    (1000)    
+x2 (1)           -.01   (-.01)    1     N/A    -1     (-1)    1000    (1000)   
+x3 (1)           10.    (10.)     1     N/A     0     (0)     1000    (1000)
+x4 (1)           1.0    (1.0)     1     N/A     0     (0)     1000    (1000)    
+```
 
