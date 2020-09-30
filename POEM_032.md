@@ -135,4 +135,14 @@ Notes:
 
 
 
+When displaying constraints, there will be an option to sort constraints by rankValue where rankValue is defined as
+
+```
+if abs(driverValue) > 1:
+ rankValue = abs(driverValue)
+
+if abs(driverValue) < 1:
+  rankValue = abs(1/driverValue)
+```
+For arrays, the constraints will be sorted by the driverValue = max(abs(array)).
 
